@@ -12,12 +12,12 @@ func Find(x []int,y int) int {
 	end:=n-1
 	for start<=end {
 		mid:=(start+end)/2
-		if x[mid]==y {
+		if y==x[mid] {
 			return mid
-		} else if x[mid]<y {
-			start=mid+1
-		} else {
+		} else if y>x[mid] {
 			end=mid-1
+		} else {
+			start=mid+1
 		}
 	}
 	return -1
@@ -31,13 +31,13 @@ func QuickSort(x []int,s int,t int)  {
 	k:=t
 	m:=x[s]
 	for j<k {
-		for j<k && x[k]>=m {
+		for j<k && x[k]<=m {
 			k--
 		}
 		if j<k {
 			x[j],x[k]=x[k],x[j]
 		}
-		for j<k && x[j]<=m {
+		for j<k && x[j]>=m {
 			j++
 		}
 		if j<k {

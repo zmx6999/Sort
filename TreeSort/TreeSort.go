@@ -13,12 +13,13 @@ type BTreeNode struct {
 }
 
 func Create(data int) *BTreeNode {
-	node:=new(BTreeNode)
-	node.Data=data
-	return node
+	return &BTreeNode{Data:data}
 }
 
 func (t *BTreeNode) Insert(data int)  {
+	if t==nil {
+		return
+	}
 	if data<t.Data {
 		if t.LeftChild==nil {
 			t.LeftChild=Create(data)
@@ -40,8 +41,8 @@ func (t *BTreeNode) MidTravel() []int {
 	}
 	x:=t.LeftChild.MidTravel()
 	x=append(x,t.Data)
-	x2:=t.RightChild.MidTravel()
-	x=append(x,x2...)
+	y:=t.RightChild.MidTravel()
+	x=append(x,y...)
 	return x
 }
 
@@ -63,11 +64,11 @@ func main()  {
 		for j:=0; j<n; j++ {
 			x[j]=rand.Intn(100)
 		}
-		t:=Create(x[0])
+		tree:=Create(x[0])
 		for j:=1; j<n; j++ {
-			t.Insert(x[j])
+			tree.Insert(x[j])
 		}
-		y:=t.MidTravel()
-		fmt.Println(IsIncrease(y))
+		x=tree.MidTravel()
+		fmt.Println(IsIncrease(x))
 	}
 }
