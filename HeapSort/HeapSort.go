@@ -8,10 +8,10 @@ import (
 
 func HeapSort(x []int,s int,m int)  {
 	l:=s*2+1
-	r:=l+1
 	if l>=m {
 		return
 	}
+	r:=l+1
 	var min int
 	if x[l]<x[r] {
 		min=l
@@ -27,11 +27,11 @@ func HeapSort(x []int,s int,m int)  {
 
 func HeapInit(x []int)  {
 	n:=len(x)
-	for i:=n/2-1; i>=0; i-- {
+	for i:=n/2; i>=0; i-- {
 		HeapSort(x,i,n-1)
 	}
 	for i:=n-1; i>0; i-- {
-		if i==1 && x[0]>=x[i] {
+		if x[0]>=x[i] {
 			break
 		}
 		x[0],x[i]=x[i],x[0]

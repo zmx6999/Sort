@@ -14,10 +14,10 @@ func Find(x []int,y int) int {
 		mid:=(start+end)/2
 		if y==x[mid] {
 			return mid
-		} else if y>x[mid] {
-			end=mid-1
-		} else {
+		} else if y<x[mid] {
 			start=mid+1
+		} else {
+			end=mid-1
 		}
 	}
 	return -1
@@ -60,7 +60,6 @@ func main()  {
 		for j:=0; j<n; j++ {
 			fmt.Print(Find(x,x[j])," ")
 		}
-		fmt.Print(Find(x,-1)," ",Find(x,100))
-		fmt.Println()
+		fmt.Println(Find(x,-100),Find(x,100))
 	}
 }
